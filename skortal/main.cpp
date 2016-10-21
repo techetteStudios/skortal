@@ -40,6 +40,10 @@ void setup() {
     strip_a.show(); // Initialize all pixels to 'off'
     strip_b.begin();
     strip_b.show(); // Initialize all pixels to 'off'
+    strip_c.begin();
+    strip_c.show(); // Initialize all pixels to 'off'
+    strip_d.begin();
+    strip_d.show(); // Initialize all pixels to 'off'
 }
 
 void loop() {
@@ -61,8 +65,12 @@ void colorWipe(uint32_t c, uint8_t wait) {
     for(uint16_t i=0; i<strip_a.numPixels(); i++) {
         strip_a.setPixelColor(i, c);
         strip_b.setPixelColor(i, c);
+        strip_c.setPixelColor(i, c);
+        strip_d.setPixelColor(i, c);
         strip_a.show();
         strip_b.show();
+        strip_c.show();
+        strip_d.show();
         delay(wait);
     }
 
