@@ -45,13 +45,13 @@
           <file leaf-file-name="main.cpp" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/main.cpp">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="68">
-                  <caret line="180" column="45" selection-start-line="180" selection-start-column="45" selection-end-line="180" selection-end-column="45" />
+                <state relative-caret-position="464">
+                  <caret line="183" column="0" selection-start-line="183" selection-start-column="0" selection-end-line="183" selection-end-column="0" />
                   <folding>
                     <element signature="e#46#68#0" expanded="true" />
                     <element signature="e#3859#4627#0" expanded="false" />
                     <element signature="e#6008#6757#0" expanded="false" />
-                    <marker date="1477029748354" expanded="false" signature="2762:3065" ph="{...}" />
+                    <marker date="1477030068923" expanded="false" signature="2762:3065" ph="{...}" />
                   </folding>
                 </state>
               </provider>
@@ -64,8 +64,8 @@
           <file leaf-file-name="main.cpp" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/main.cpp">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="396">
-                  <caret line="60" column="25" selection-start-line="60" selection-start-column="25" selection-end-line="60" selection-end-column="25" />
+                <state relative-caret-position="506">
+                  <caret line="65" column="26" selection-start-line="65" selection-start-column="26" selection-end-line="65" selection-end-column="26" />
                   <folding>
                     <element signature="e#46#68#0" expanded="true" />
                     <element signature="e#2749#3065#0" expanded="false" />
@@ -307,12 +307,12 @@
       <option name="presentableId" value="Default" />
       <updated>1476390929828</updated>
       <workItem from="1476390932038" duration="6784000" />
-      <workItem from="1477021629601" duration="8177000" />
+      <workItem from="1477021629601" duration="8491000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="14961000" />
+    <option name="totallyTimeSpent" value="15275000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1618" height="868" extended-state="6" />
@@ -388,7 +388,7 @@
             <element signature="e#46#68#0" expanded="true" />
             <element signature="e#3859#4627#0" expanded="false" />
             <element signature="e#6008#6757#0" expanded="false" />
-            <marker date="1477029748354" expanded="false" signature="2762:3065" ph="{...}" />
+            <marker date="1477030068923" expanded="false" signature="2762:3065" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -411,13 +411,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/main.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="180" column="45" selection-start-line="180" selection-start-column="45" selection-end-line="180" selection-end-column="45" />
+        <state relative-caret-position="464">
+          <caret line="183" column="0" selection-start-line="183" selection-start-column="0" selection-end-line="183" selection-end-column="0" />
           <folding>
             <element signature="e#46#68#0" expanded="true" />
             <element signature="e#3859#4627#0" expanded="false" />
             <element signature="e#6008#6757#0" expanded="false" />
-            <marker date="1477029748354" expanded="false" signature="2762:3065" ph="{...}" />
+            <marker date="1477030068923" expanded="false" signature="2762:3065" ph="{...}" />
           </folding>
         </state>
       </provider>

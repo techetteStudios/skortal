@@ -57,7 +57,7 @@ uint16_t slot_7_level = 4;
 uint16_t slot_8_level = 3;
 
 //Resonator Strength (1=weakest, 7=strongest)
-uint16_t slot_1_power = 3;
+uint16_t slot_1_power = 0;
 uint16_t slot_2_power = 5;
 uint16_t slot_3_power = 6;
 uint16_t slot_4_power = 5;
@@ -176,7 +176,7 @@ void setStrip(Adafruit_NeoPixel *strip, uint16_t strip_1_lvl, uint16_t strip_1_p
     //Second slot of strip
     // flipped due to orientation on skirt
     level_color = determineColor(strip_2_lvl);
-    numOfLights = 15-strip_1_pwr;
+    numOfLights = 15-strip_2_pwr;
     for(uint16_t j=14; j>numOfLights; j--) {
         strip->setPixelColor(j, level_color);
     }
