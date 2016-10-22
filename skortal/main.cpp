@@ -20,17 +20,17 @@ Adafruit_NeoPixel strip_d = Adafruit_NeoPixel(60, PIN4, NEO_GRB + NEO_KHZ800);
 
 //Only need to declare colors for one strip, can be used for all strips
 uint32_t l1_color = strip_a.Color(200, 200, 0); // Yellow
-uint32_t l2_color = strip_a.Color(200, 90, 10); // Light Orange
-uint32_t l3_color = strip_a.Color(255, 100, 0); // Orange
+uint32_t l2_color = strip_a.Color(170, 90, 10); // Light Orange
+uint32_t l3_color = strip_a.Color(255, 40, 0); // Orange
 uint32_t l4_color = strip_a.Color(255, 0, 0); // Red
-uint32_t l5_color = strip_a.Color(255, 0, 100); // Magenta
+uint32_t l5_color = strip_a.Color(255, 0, 40); // Magenta
 uint32_t l6_color = strip_a.Color(200, 0, 150); // Pink
-uint32_t l7_color = strip_a.Color(210, 0, 100); // Light Purple
-uint32_t l8_color = strip_a.Color(100, 0, 255); // Purple
+uint32_t l7_color = strip_a.Color(100, 0, 230); // Light Purple
+uint32_t l8_color = strip_a.Color(30, 0, 255); // Purple
 uint32_t enl_color = strip_a.Color(0, 255, 0); // Green
 uint32_t res_color = strip_a.Color(0, 0, 55); // Blue
 uint32_t neu_color = strip_a.Color(255, 0, 0); // Red
-uint32_t off_color = strip_a.Color(0, 0, 0); // Red
+uint32_t off_color = strip_a.Color(0, 0, 0); // No Color
 // IMPORTANT: To reduce NeoPixel burnout risk, add 1000 uF capacitor across
 // pixel power leads, add 300 - 500 Ohm resistor on first pixel's data input
 // and minimize distance between Arduino and first pixel.  Avoid connecting
@@ -48,23 +48,23 @@ uint32_t slot_8_color = strip_a.Color(255, 0, 0);
 
 //Resonator level (1=weakest, 8=strongest)
 uint16_t slot_1_level = 8;
-uint16_t slot_2_level = 2;
-uint16_t slot_3_level = 4;
-uint16_t slot_4_level = 2;
-uint16_t slot_5_level = 5;
-uint16_t slot_6_level = 4;
-uint16_t slot_7_level = 4;
-uint16_t slot_8_level = 3;
+uint16_t slot_2_level = 7;
+uint16_t slot_3_level = 6;
+uint16_t slot_4_level = 5;
+uint16_t slot_5_level = 4;
+uint16_t slot_6_level = 3;
+uint16_t slot_7_level = 2;
+uint16_t slot_8_level = 1;
 
 //Resonator Strength (1=weakest, 7=strongest)
-uint16_t slot_1_power = 0;
-uint16_t slot_2_power = 5;
-uint16_t slot_3_power = 6;
-uint16_t slot_4_power = 5;
-uint16_t slot_5_power = 4;
-uint16_t slot_6_power = 3;
-uint16_t slot_7_power = 2;
-uint16_t slot_8_power = 1;
+uint16_t slot_1_power = 7;
+uint16_t slot_2_power = 7;
+uint16_t slot_3_power = 7;
+uint16_t slot_4_power = 7;
+uint16_t slot_5_power = 7;
+uint16_t slot_6_power = 7;
+uint16_t slot_7_power = 7;
+uint16_t slot_8_power = 7;
 
 
 void setup() {
@@ -85,10 +85,29 @@ void loop() {
 }
 
 // Fill the dots one after the other with a color
-void colorWipe(uint32_t c) {
-    for(uint16_t i=0; i<strip_a.numPixels(); i++) {
-        strip_a.setPixelColor(i, c);
-        strip_a.show();
+void colorWipe(Adafruit_NeoPixel *strip, uint32_t c, uint8_t wait) {
+    for(uint16_t i=0; i<strip->numPixels(); i++) {
+        strip->setPixelColor(i, c);
+        strip->show();
+        delay(wait);
+    }
+}
+
+//Theatre-style crawling lights.
+void theaterChase(Adafruit_NeoPixel *strip, uint32_t c, uint8_t wait) {
+    for (int j=0; j<10; j++) {  //do 10 cycles of chasing
+        for (int q=0; q < 3; q++) {
+            for (uint16_t i=0; i < strip->numPixels(); i=i+3) {
+                strip->setPixelColor(i+q, c);    //turn every third pixel on
+            }
+            strip->show();
+
+            delay(wait);
+
+            for (uint16_t i=0; i < strip->numPixels(); i=i+3) {
+                strip->setPixelColor(i+q, 0);        //turn every third pixel off
+            }
+        }
     }
 }
 
@@ -96,8 +115,20 @@ void colorWipe(uint32_t c) {
 void checkIfNeutral() {
     if(faction == 'N')
     {
-        for(uint16_t i=0; i<strip_a.numPixels(); i++) {
-            strip_a.setPixelColor(i, off_color);
+        colorWipe(&strip_a, neu_color, 10);
+        colorWipe(&strip_b, neu_color, 10);
+        colorWipe(&strip_c, neu_color, 10);
+        colorWipe(&strip_d, neu_color, 10);
+        theaterChase(&strip_a, off_color, 10);
+        theaterChase(&strip_b, off_color, 10);
+        theaterChase(&strip_c, off_color, 10);
+        theaterChase(&strip_d, off_color, 10);
+        theaterChase(&strip_a, neu_color, 20);
+        theaterChase(&strip_b, neu_color, 20);
+        theaterChase(&strip_c, neu_color, 20);
+        theaterChase(&strip_d, neu_color, 20);
+/*        for(uint16_t i=0; i<strip_a.numPixels(); i++) {
+            strip_a.setPixelColor(i, neu_color);
             strip_b.setPixelColor(i, neu_color);
             strip_c.setPixelColor(i, neu_color);
             strip_d.setPixelColor(i, neu_color);
@@ -105,7 +136,7 @@ void checkIfNeutral() {
             strip_b.show();
             strip_c.show();
             strip_d.show();
-        }
+        }*/
     }
 }
 
@@ -176,7 +207,7 @@ void setStrip(Adafruit_NeoPixel *strip, uint16_t strip_1_lvl, uint16_t strip_1_p
     //Second slot of strip
     // flipped due to orientation on skirt
     level_color = determineColor(strip_2_lvl);
-    numOfLights = 15-strip_2_pwr;
+    numOfLights = 14-strip_2_pwr;
     for(uint16_t j=14; j>numOfLights; j--) {
         strip->setPixelColor(j, level_color);
     }

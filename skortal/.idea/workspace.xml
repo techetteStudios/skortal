@@ -29,7 +29,7 @@
     <favorites_list name="skortal" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.63335454">
+    <splitter split-orientation="horizontal" split-proportion="0.4939529">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
           <file leaf-file-name="CMakeLists.txt" pinned="false" current-in-tab="false">
@@ -45,13 +45,13 @@
           <file leaf-file-name="main.cpp" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/main.cpp">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="464">
-                  <caret line="183" column="0" selection-start-line="183" selection-start-column="0" selection-end-line="183" selection-end-column="0" />
+                <state relative-caret-position="285">
+                  <caret line="96" column="17" selection-start-line="96" selection-start-column="5" selection-end-line="96" selection-end-column="17" />
                   <folding>
                     <element signature="e#46#68#0" expanded="true" />
-                    <element signature="e#3859#4627#0" expanded="false" />
-                    <element signature="e#6008#6757#0" expanded="false" />
-                    <marker date="1477030068923" expanded="false" signature="2762:3065" ph="{...}" />
+                    <element signature="e#5062#5830#0" expanded="false" />
+                    <element signature="e#7211#7960#0" expanded="false" />
+                    <marker date="1477116510996" expanded="false" signature="2764:3067" ph="{...}" />
                   </folding>
                 </state>
               </provider>
@@ -64,14 +64,13 @@
           <file leaf-file-name="main.cpp" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/main.cpp">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="506">
-                  <caret line="65" column="26" selection-start-line="65" selection-start-column="26" selection-end-line="65" selection-end-column="26" />
+                <state relative-caret-position="241">
+                  <caret line="128" column="43" selection-start-line="0" selection-start-column="0" selection-end-line="263" selection-end-column="1" />
                   <folding>
                     <element signature="e#46#68#0" expanded="true" />
-                    <element signature="e#2749#3065#0" expanded="false" />
-                    <element signature="e#3140#3339#0" expanded="false" />
-                    <element signature="e#3341#3857#0" expanded="false" />
-                    <element signature="e#6008#6757#0" expanded="false" />
+                    <element signature="e#2751#3067#0" expanded="false" />
+                    <element signature="e#3142#3399#0" expanded="false" />
+                    <element signature="e#7211#7960#0" expanded="false" />
                   </folding>
                 </state>
               </provider>
@@ -307,12 +306,12 @@
       <option name="presentableId" value="Default" />
       <updated>1476390929828</updated>
       <workItem from="1476390932038" duration="6784000" />
-      <workItem from="1477021629601" duration="8491000" />
+      <workItem from="1477021629601" duration="12432000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="15275000" />
+    <option name="totallyTimeSpent" value="19216000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1618" height="868" extended-state="6" />
@@ -386,9 +385,9 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#46#68#0" expanded="true" />
-            <element signature="e#3859#4627#0" expanded="false" />
-            <element signature="e#6008#6757#0" expanded="false" />
-            <marker date="1477030068923" expanded="false" signature="2762:3065" ph="{...}" />
+            <element signature="e#2751#3067#0" expanded="false" />
+            <element signature="e#3142#3399#0" expanded="false" />
+            <element signature="e#7211#7960#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -411,13 +410,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/main.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="464">
-          <caret line="183" column="0" selection-start-line="183" selection-start-column="0" selection-end-line="183" selection-end-column="0" />
+        <state relative-caret-position="241">
+          <caret line="128" column="43" selection-start-line="0" selection-start-column="0" selection-end-line="263" selection-end-column="1" />
           <folding>
             <element signature="e#46#68#0" expanded="true" />
-            <element signature="e#3859#4627#0" expanded="false" />
-            <element signature="e#6008#6757#0" expanded="false" />
-            <marker date="1477030068923" expanded="false" signature="2762:3065" ph="{...}" />
+            <element signature="e#2751#3067#0" expanded="false" />
+            <element signature="e#3142#3399#0" expanded="false" />
+            <element signature="e#7211#7960#0" expanded="false" />
           </folding>
         </state>
       </provider>
