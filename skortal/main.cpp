@@ -36,7 +36,7 @@ uint32_t off_color = strip_a.Color(0, 0, 0); // No Color
 // and minimize distance between Arduino and first pixel.  Avoid connecting
 // on a live circuit...if you must, connect GND first.
 
-char faction = 'E';
+char faction = 'R';
 uint32_t slot_1_color = strip_a.Color(255, 0, 0);
 uint32_t slot_2_color = strip_a.Color(255, 0, 0);
 uint32_t slot_3_color = strip_a.Color(255, 0, 0);
@@ -57,14 +57,14 @@ uint16_t slot_7_level = 2;
 uint16_t slot_8_level = 1;
 
 //Resonator Strength (1=weakest, 7=strongest)
-uint16_t slot_1_power = 7;
-uint16_t slot_2_power = 7;
-uint16_t slot_3_power = 7;
-uint16_t slot_4_power = 7;
-uint16_t slot_5_power = 7;
-uint16_t slot_6_power = 7;
-uint16_t slot_7_power = 7;
-uint16_t slot_8_power = 7;
+uint16_t slot_1_power = 6;
+uint16_t slot_2_power = 6;
+uint16_t slot_3_power = 6;
+uint16_t slot_4_power = 0;
+uint16_t slot_5_power = 6;
+uint16_t slot_6_power = 6;
+uint16_t slot_7_power = 6;
+uint16_t slot_8_power = 6;
 
 
 void setup() {
@@ -82,6 +82,7 @@ void loop() {
     checkIfNeutral();
     setFaction();
     setLevel();
+    delay(10000);
 }
 
 // Fill the dots one after the other with a color
@@ -127,16 +128,7 @@ void checkIfNeutral() {
         theaterChase(&strip_b, neu_color, 20);
         theaterChase(&strip_c, neu_color, 20);
         theaterChase(&strip_d, neu_color, 20);
-/*        for(uint16_t i=0; i<strip_a.numPixels(); i++) {
-            strip_a.setPixelColor(i, neu_color);
-            strip_b.setPixelColor(i, neu_color);
-            strip_c.setPixelColor(i, neu_color);
-            strip_d.setPixelColor(i, neu_color);
-            strip_a.show();
-            strip_b.show();
-            strip_c.show();
-            strip_d.show();
-        }*/
+
     }
 }
 
@@ -184,24 +176,21 @@ void setLevel() {
 
     clearAll();
 
-    setStrip(&strip_a, slot_1_level, slot_1_power, slot_2_level, slot_2_power);
-    setStrip(&strip_b, slot_3_level, slot_3_power, slot_4_level, slot_4_power);
-    setStrip(&strip_c, slot_5_level, slot_5_power, slot_6_level, slot_6_power);
-    setStrip(&strip_d, slot_7_level, slot_7_power, slot_8_level, slot_8_power);
-
-    strip_a.show();
-    strip_b.show();
-    strip_c.show();
-    strip_d.show();
+    setStrip(&strip_a, slot_1_level, slot_1_power, slot_2_level, slot_2_power, 20);
+    setStrip(&strip_b, slot_3_level, slot_3_power, slot_4_level, slot_4_power, 30);
+    setStrip(&strip_c, slot_5_level, slot_5_power, slot_6_level, slot_6_power, 40);
+    setStrip(&strip_d, slot_7_level, slot_7_power, slot_8_level, slot_8_power, 50);
 }
 
-void setStrip(Adafruit_NeoPixel *strip, uint16_t strip_1_lvl, uint16_t strip_1_pwr, uint16_t strip_2_lvl, uint16_t strip_2_pwr)
+void setStrip(Adafruit_NeoPixel *strip, uint16_t strip_1_lvl, uint16_t strip_1_pwr, uint16_t strip_2_lvl, uint16_t strip_2_pwr, uint8_t wait)
 {
     //First slot of strip
     uint32_t level_color = determineColor(strip_1_lvl);
     uint32_t numOfLights = strip_1_pwr+1;
     for(uint16_t i=1; i<numOfLights; i++) {
         strip->setPixelColor(i, level_color);
+        strip->show();
+        delay(wait);
     }
 
     //Second slot of strip
@@ -210,6 +199,8 @@ void setStrip(Adafruit_NeoPixel *strip, uint16_t strip_1_lvl, uint16_t strip_1_p
     numOfLights = 14-strip_2_pwr;
     for(uint16_t j=14; j>numOfLights; j--) {
         strip->setPixelColor(j, level_color);
+        strip->show();
+        delay(wait);
     }
 }
 
