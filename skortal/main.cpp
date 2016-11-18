@@ -31,6 +31,7 @@ uint32_t enl_color = strip_a.Color(0, 255, 0); // Green
 uint32_t res_color = strip_a.Color(0, 0, 55); // Blue
 uint32_t neu_color = strip_a.Color(255, 0, 0); // Red
 uint32_t off_color = strip_a.Color(0, 0, 0); // No Color
+
 // IMPORTANT: To reduce NeoPixel burnout risk, add 1000 uF capacitor across
 // pixel power leads, add 300 - 500 Ohm resistor on first pixel's data input
 // and minimize distance between Arduino and first pixel.  Avoid connecting
@@ -66,8 +67,20 @@ uint16_t slot_6_power = 6;
 uint16_t slot_7_power = 6;
 uint16_t slot_8_power = 6;
 
+String input = "";
+
 
 void setup() {
+    // Open serial communications and wait for port to open:
+    Serial.begin(9600);
+    while (!Serial) {
+        ; // wait for serial port to connect. Needed for native USB port only
+    }
+
+    // send an intro:
+    Serial.println("\n\nString toInt():");
+    Serial.println();
+
     strip_a.begin();
     strip_a.show(); // Initialize all pixels to 'off'
     strip_b.begin();
@@ -79,10 +92,21 @@ void setup() {
 }
 
 void loop() {
-    checkIfNeutral();
-    setFaction();
-    setLevel();
-    delay(10000);
+    while (Serial.available() > 0) {
+        int inChar = Serial.read();
+
+        if (inChar == '\n') {
+            readInput();
+            checkIfNeutral();
+            setFaction();
+            setLevel();
+            delay(10000);
+        }
+        else
+        {
+            input += (char) inChar;
+        }
+    }
 }
 
 // Fill the dots one after the other with a color
@@ -110,6 +134,37 @@ void theaterChase(Adafruit_NeoPixel *strip, uint32_t c, uint8_t wait) {
             }
         }
     }
+}
+
+//If portal is neutral, set all 1st light to red and do theater-chase red on rest
+void readInput() {
+
+    faction = (input[0])? input[0]:'N';
+
+    //subtracting '0', uses ascii and converts string char to int char
+     slot_1_level = (input[1])? input[1]-'0': 0;
+     slot_2_level = (input[2])? input[2]-'0': 0;
+     slot_3_level = (input[3])? input[3]-'0': 0;
+     slot_4_level = (input[4])? input[4]-'0': 0;
+     slot_5_level = (input[5])? input[5]-'0': 0;
+     slot_6_level = (input[6])? input[6]-'0': 0;
+     slot_7_level = (input[7])? input[7]-'0': 0;
+     slot_8_level = (input[8])? input[8]-'0': 0;
+     slot_1_power = (input[9])? input[9]-'0': 0;
+     slot_2_power = (input[10])? input[10]-'0': 0;
+     slot_3_power = (input[11])? input[11]-'0': 0;
+     slot_4_power = (input[12])? input[12]-'0': 0;
+     slot_5_power = (input[13])? input[13]-'0': 0;
+     slot_6_power = (input[14])? input[14]-'0': 0;
+     slot_7_power = (input[15])? input[15]-'0': 0;
+     slot_8_power = (input[16])? input[16]-'0': 0;
+    uint32_t final = slot_1_level + slot_2_level + slot_3_level + slot_4_level + slot_5_level + slot_6_level + slot_7_level + slot_8_level;
+    uint32_t final2 = slot_1_power + slot_2_power + slot_3_power + slot_4_power + slot_5_power + slot_6_power + slot_7_power + slot_8_power;
+    Serial.print("Data:");Serial.print(slot_1_level);Serial.print(" ");Serial.println(slot_2_level);Serial.print(" ");Serial.println(slot_3_level);Serial.print(" ");Serial.println(slot_4_level);Serial.print(" ");Serial.println(slot_5_level);Serial.print(" ");Serial.println(slot_6_level);Serial.print(" ");Serial.println(slot_7_level);Serial.print(" ");Serial.println(slot_8_level);
+    Serial.print("Data:");Serial.print(slot_1_power);Serial.print(" ");Serial.println(slot_2_power);Serial.print(" ");Serial.println(slot_3_power);Serial.print(" ");Serial.println(slot_4_power);Serial.print(" ");Serial.println(slot_5_power);Serial.print(" ");Serial.println(slot_6_power);Serial.print(" ");Serial.println(slot_7_power);Serial.print(" ");Serial.println(slot_8_power);
+    Serial.print("Value:");Serial.print(final);Serial.print(" ");Serial.println(final2);
+    Serial.print("String: ");Serial.println(input);
+    input = "";
 }
 
 //If portal is neutral, set all 1st light to red and do theater-chase red on rest
