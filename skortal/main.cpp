@@ -3,10 +3,10 @@
 #include <avr/power.h>
 #endif
 
-#define PIN1 6
-#define PIN2 7
-#define PIN3 8
-#define PIN4 9
+#define PIN1 4
+#define PIN2 5
+#define PIN3 6
+#define PIN4 7
 
 // Parameter 1 = number of pixels in strip
 // Parameter 2 = Arduino pin number (most are valid)
@@ -28,7 +28,7 @@ uint32_t l6_color = strip_a.Color(200, 0, 150); // Pink
 uint32_t l7_color = strip_a.Color(100, 0, 230); // Light Purple
 uint32_t l8_color = strip_a.Color(30, 0, 255); // Purple
 uint32_t enl_color = strip_a.Color(0, 255, 0); // Green
-uint32_t res_color = strip_a.Color(0, 0, 55); // Blue
+uint32_t res_color = strip_a.Color(0, 0, 255); // Blue
 uint32_t neu_color = strip_a.Color(255, 0, 0); // Red
 uint32_t off_color = strip_a.Color(0, 0, 0); // No Color
 
@@ -37,7 +37,7 @@ uint32_t off_color = strip_a.Color(0, 0, 0); // No Color
 // and minimize distance between Arduino and first pixel.  Avoid connecting
 // on a live circuit...if you must, connect GND first.
 
-char faction = 'R';
+char faction = 'E';
 uint32_t slot_1_color = strip_a.Color(255, 0, 0);
 uint32_t slot_2_color = strip_a.Color(255, 0, 0);
 uint32_t slot_3_color = strip_a.Color(255, 0, 0);
@@ -61,7 +61,7 @@ uint16_t slot_8_level = 1;
 uint16_t slot_1_power = 6;
 uint16_t slot_2_power = 6;
 uint16_t slot_3_power = 6;
-uint16_t slot_4_power = 0;
+uint16_t slot_4_power = 6;
 uint16_t slot_5_power = 6;
 uint16_t slot_6_power = 6;
 uint16_t slot_7_power = 6;
@@ -71,16 +71,6 @@ String input = "";
 
 
 void setup() {
-    // Open serial communications and wait for port to open:
-    Serial.begin(9600);
-    while (!Serial) {
-        ; // wait for serial port to connect. Needed for native USB port only
-    }
-
-    // send an intro:
-    Serial.println("\n\nString toInt():");
-    Serial.println();
-
     strip_a.begin();
     strip_a.show(); // Initialize all pixels to 'off'
     strip_b.begin();
@@ -89,6 +79,16 @@ void setup() {
     strip_c.show(); // Initialize all pixels to 'off'
     strip_d.begin();
     strip_d.show(); // Initialize all pixels to 'off'
+
+    // Open serial communications and wait for port to open:
+    Serial.begin(115200);
+    while (!Serial) {
+        ; // wait for serial port to connect. Needed for native USB port only
+    }
+
+    // send an intro:
+    Serial.println("\n\nString toInt():");
+    Serial.println();
 }
 
 void loop() {
@@ -100,7 +100,7 @@ void loop() {
             checkIfNeutral();
             setFaction();
             setLevel();
-            delay(10000);
+            //delay(10000);
         }
         else
         {
@@ -142,27 +142,24 @@ void readInput() {
     faction = (input[0])? input[0]:'N';
 
     //subtracting '0', uses ascii and converts string char to int char
-     slot_1_level = (input[1])? input[1]-'0': 0;
-     slot_2_level = (input[2])? input[2]-'0': 0;
-     slot_3_level = (input[3])? input[3]-'0': 0;
-     slot_4_level = (input[4])? input[4]-'0': 0;
-     slot_5_level = (input[5])? input[5]-'0': 0;
-     slot_6_level = (input[6])? input[6]-'0': 0;
-     slot_7_level = (input[7])? input[7]-'0': 0;
-     slot_8_level = (input[8])? input[8]-'0': 0;
-     slot_1_power = (input[9])? input[9]-'0': 0;
-     slot_2_power = (input[10])? input[10]-'0': 0;
-     slot_3_power = (input[11])? input[11]-'0': 0;
-     slot_4_power = (input[12])? input[12]-'0': 0;
-     slot_5_power = (input[13])? input[13]-'0': 0;
-     slot_6_power = (input[14])? input[14]-'0': 0;
-     slot_7_power = (input[15])? input[15]-'0': 0;
-     slot_8_power = (input[16])? input[16]-'0': 0;
-    uint32_t final = slot_1_level + slot_2_level + slot_3_level + slot_4_level + slot_5_level + slot_6_level + slot_7_level + slot_8_level;
-    uint32_t final2 = slot_1_power + slot_2_power + slot_3_power + slot_4_power + slot_5_power + slot_6_power + slot_7_power + slot_8_power;
-    Serial.print("Data:");Serial.print(slot_1_level);Serial.print(" ");Serial.println(slot_2_level);Serial.print(" ");Serial.println(slot_3_level);Serial.print(" ");Serial.println(slot_4_level);Serial.print(" ");Serial.println(slot_5_level);Serial.print(" ");Serial.println(slot_6_level);Serial.print(" ");Serial.println(slot_7_level);Serial.print(" ");Serial.println(slot_8_level);
-    Serial.print("Data:");Serial.print(slot_1_power);Serial.print(" ");Serial.println(slot_2_power);Serial.print(" ");Serial.println(slot_3_power);Serial.print(" ");Serial.println(slot_4_power);Serial.print(" ");Serial.println(slot_5_power);Serial.print(" ");Serial.println(slot_6_power);Serial.print(" ");Serial.println(slot_7_power);Serial.print(" ");Serial.println(slot_8_power);
-    Serial.print("Value:");Serial.print(final);Serial.print(" ");Serial.println(final2);
+    slot_1_level = (input[1])? input[1]-'0': 0;
+    slot_1_power  = (input[2])? input[2]-'0': 0;
+    slot_2_level = (input[3])? input[3]-'0': 0;
+    slot_2_power = (input[4])? input[4]-'0': 0;
+    slot_3_level = (input[5])? input[5]-'0': 0;
+    slot_3_power = (input[6])? input[6]-'0': 0;
+    slot_4_level = (input[7])? input[7]-'0': 0;
+    slot_4_power = (input[8])? input[8]-'0': 0;
+    slot_5_level = (input[9])? input[9]-'0': 0;
+    slot_5_power = (input[10])? input[10]-'0': 0;
+    slot_6_level = (input[11])? input[11]-'0': 0;
+    slot_6_power = (input[12])? input[12]-'0': 0;
+    slot_7_level = (input[13])? input[13]-'0': 0;
+    slot_7_power = (input[14])? input[14]-'0': 0;
+    slot_8_level = (input[15])? input[15]-'0': 0;
+    slot_8_power = (input[16])? input[16]-'0': 0;
+    Serial.print("Level:");Serial.print(slot_1_level);Serial.print(" ");Serial.print(slot_2_level);Serial.print(" ");Serial.print(slot_3_level);Serial.print(" ");Serial.print(slot_4_level);Serial.print(" ");Serial.print(slot_5_level);Serial.print(" ");Serial.print(slot_6_level);Serial.print(" ");Serial.print(slot_7_level);Serial.print(" ");Serial.println(slot_8_level);
+    Serial.print("Power:");Serial.print(slot_1_power);Serial.print(" ");Serial.print(slot_2_power);Serial.print(" ");Serial.print(slot_3_power);Serial.print(" ");Serial.print(slot_4_power);Serial.print(" ");Serial.print(slot_5_power);Serial.print(" ");Serial.print(slot_6_power);Serial.print(" ");Serial.print(slot_7_power);Serial.print(" ");Serial.println(slot_8_power);
     Serial.print("String: ");Serial.println(input);
     input = "";
 }
